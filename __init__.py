@@ -76,7 +76,11 @@ def read_meshlab(filepath):
         #     cache=cache, nodeType=nodeType, uid0=uid0)
         cameras_sfm = nodeSFM['outputs']['outputViewsAndPoses'].format(
             cache=cache, nodeType=nodeType, uid0=uid0)
-        cloud = os.path.join(cache, nodeType, uid0, 'cloud_and_poses.ply')
+
+        nodeConvertSFM = data['graph']['ConvertSfMFormat_1']
+        nodeTypeConvert = nodeConvertSFM['nodeType']
+        uid0Convert = nodeConvertSFM['uids']['0']
+        cloud = os.path.join(cache, nodeTypeConvert, uid0Convert, 'sfm.ply')
     except KeyError:
         cameras_sfm = cloud = None
     try:
